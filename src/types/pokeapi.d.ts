@@ -3,8 +3,8 @@
 namespace Pokemon {
   type BaseList = {
     count: number;
-    next: string;
-    previous: string;
+    next?: string | null;
+    previous?: string | null;
     results: BaseName[];
     status: boolean;
     message: string;
@@ -103,10 +103,10 @@ namespace Pokemon {
 
   type PokemonList = {
     count: number;
-    next: string;
-    previous: string;
-    nextOffset: number;
-    prevOffset: number;
+    next?: string | null;
+    previous?: string | null;
+    nextOffset?: number | null;
+    prevOffset?: number | null;
     results: PokemonItem[];
     status: boolean;
     message: string;
