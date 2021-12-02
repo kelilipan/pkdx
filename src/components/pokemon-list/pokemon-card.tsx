@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
+import { Link } from "react-router-dom";
 import { formatNumber } from "utils/format-number";
 import TypeLabel from "./type-label";
 
@@ -46,7 +47,7 @@ const PokemonCard = ({ data }: PokemonCardProps) => {
   `;
 
   return (
-    <div css={card}>
+    <Link to={"/pokemon/" + data.name} css={card}>
       <img src={data.image} alt={data.name} css={image} />
       <p css={{ fontSize: "0.8rem", margin: 0, opacity: 0.8 }}>
         {formatNumber(data.id)}
@@ -56,7 +57,7 @@ const PokemonCard = ({ data }: PokemonCardProps) => {
         <TypeLabel>poison</TypeLabel>
         <TypeLabel>fire</TypeLabel>
       </div>
-    </div>
+    </Link>
   );
 };
 
