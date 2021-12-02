@@ -1,5 +1,7 @@
+import Container from "components/layout/container";
+
 const Home = () => {
-  return <div>/index</div>;
+  return <Container>/index</Container>;
 };
 
 export default Home;

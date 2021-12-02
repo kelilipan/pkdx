@@ -5,4 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #eee;
+}
+
+div#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

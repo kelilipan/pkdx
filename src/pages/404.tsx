@@ -1,5 +1,7 @@
+import Container from "components/layout/container";
+
 const NotFound = () => {
-  return <div>404 not found</div>;
+  return <Container>404 not found</Container>;
 };
 
 export default NotFound;
