@@ -1,6 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
-const Container: React.FC = ({ children }) => {
+const Container: React.FC<{ className?: string }> = ({
+  children,
+  ...props
+}) => {
   return (
     <div
       css={{
@@ -11,6 +14,7 @@ const Container: React.FC = ({ children }) => {
         padding: "0 16px 60px",
         flex: 1,
       }}
+      {...props}
     >
       {children}
     </div>
