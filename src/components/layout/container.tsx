@@ -11,7 +11,7 @@ const Container: React.FC<{ className?: string }> = ({
         width: "100%",
         maxWidth: "480px",
         margin: "0px auto",
-        padding: "0 16px 60px",
+        padding: "0 16px 70px",
         flex: 1,
       }}
       {...props}

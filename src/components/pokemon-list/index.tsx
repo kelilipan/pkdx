@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import PokemonCard from "./pokemon-card";
 
 export type PokemonListProps = {
-  data: Pokemon.PokemonList;
+  data?: Pokemon.PokemonList;
 };
 
 const PokemonList = ({ data }: PokemonListProps) => {
@@ -16,7 +16,7 @@ const PokemonList = ({ data }: PokemonListProps) => {
 
   return (
     <div css={grid}>
-      {data.results.map((pokemon: Pokemon.PokemonItem) => (
+      {data?.results.map((pokemon: Pokemon.PokemonItem) => (
         <PokemonCard key={pokemon.id} data={pokemon} />
       ))}
     </div>
