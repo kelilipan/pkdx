@@ -5,8 +5,6 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 
 export type MoveProps = {
   name?: string;
-  id?: number;
-  url?: string;
 };
 
 const Move = ({ name }: MoveProps) => {
