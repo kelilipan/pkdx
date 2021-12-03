@@ -4,9 +4,10 @@ import { css } from "@emotion/react";
 
 const CatchPokemon = () => {
   const catchPokemon = css`
+    cursor: pointer;
     position: absolute;
     right: 0;
-    top: 80px;
+    top: 60px;
     background-color: white;
     border-radius: 25px 0 0 25px;
     padding: 0.5em;
@@ -15,9 +16,8 @@ const CatchPokemon = () => {
     align-items: center;
     gap: 5px;
     font-weight: bold;
-    cursor: pointer;
     transition: 0.15s ease all;
-
+    z-index: 100;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;

@@ -2,6 +2,7 @@
 
 import { css } from "@emotion/react";
 import { PokemonDetailProps } from ".";
+import Move from "./move";
 import Stat from "./stat";
 
 const DetailInfo = ({ data }: PokemonDetailProps) => {
@@ -25,6 +26,7 @@ const DetailInfo = ({ data }: PokemonDetailProps) => {
     flex-direction: column;
     gap: 0.5em;
     width: 100%;
+    z-index: 2;
   `;
 
   const ability = css`
@@ -33,7 +35,6 @@ const DetailInfo = ({ data }: PokemonDetailProps) => {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5em;
-    z-index: 2;
     span {
       text-transform: capitalize;
     }
@@ -41,7 +42,15 @@ const DetailInfo = ({ data }: PokemonDetailProps) => {
 
   return (
     <div css={info}>
-      <h2>Abilities</h2>
+      <h2>Stats</h2>
+      <div css={stats}>
+        {data.stats?.map((stat, idx) => {
+          return (
+            <Stat key={idx} name={stat.stat?.name} value={stat.base_stat} />
+          );
+        })}
+      </div>
+      <h2 css={{ marginTop: "2em" }}>Abilities</h2>
       <div css={ability}>
         {data.abilities?.map((ability, idx) => (
           <span key={idx}>
@@ -50,19 +59,16 @@ const DetailInfo = ({ data }: PokemonDetailProps) => {
           </span>
         ))}
       </div>
-      <h2 css={{ marginTop: "2em" }}>Stats</h2>
-      <div css={stats}>
-        {data.stats?.map((stat, idx) => {
-          return (
-            <Stat key={idx} name={stat.stat?.name} value={stat.base_stat} />
-          );
-        })}
-      </div>
       <h2 css={{ marginTop: "2em" }}>Moves</h2>
       <div css={stats}>
-        {data.stats?.map((stat, idx) => {
+        {data.moves?.map((move, idx) => {
           return (
-            <Stat key={idx} name={stat.stat?.name} value={stat.base_stat} />
+            <Move
+              key={idx}
+              name={move.move?.name}
+              id={move.move?.id}
+              url={move.move?.url}
+            />
           );
         })}
       </div>

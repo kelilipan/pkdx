@@ -13,8 +13,9 @@ const TypeLabel = ({ children }: TypeLabelProps) => {
     color: black;
     background: ${lighten(0.15, theme.color.type[children])};
     text-transform: uppercase;
-    padding: 5px;
+    padding: 6px;
     border-radius: 25px;
+    font-weight: 600;
     font-size: 0.8rem;
   `;
   return <div css={label}>{children}</div>;

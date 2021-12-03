@@ -34,7 +34,6 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
     }
 
     .types {
-      margin-top: 0.5em;
       display: flex;
       gap: 0.5em;
       opacity: 0.8;

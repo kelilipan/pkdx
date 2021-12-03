@@ -17,6 +17,7 @@ const PokemonDetail = ({ data }: PokemonDetailProps) => {
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
   `;
 
   const sprites = css`
