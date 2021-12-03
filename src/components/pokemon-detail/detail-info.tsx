@@ -52,14 +52,18 @@ const DetailInfo = ({ data }: PokemonDetailProps) => {
       </div>
       <h2 css={{ marginTop: "2em" }}>Stats</h2>
       <div css={stats}>
-        {data.stats?.map((stat) => {
-          return <Stat name={stat.stat?.name} value={stat.base_stat} />;
+        {data.stats?.map((stat, idx) => {
+          return (
+            <Stat key={idx} name={stat.stat?.name} value={stat.base_stat} />
+          );
         })}
       </div>
       <h2 css={{ marginTop: "2em" }}>Moves</h2>
       <div css={stats}>
-        {data.stats?.map((stat) => {
-          return <Stat name={stat.stat?.name} value={stat.base_stat} />;
+        {data.stats?.map((stat, idx) => {
+          return (
+            <Stat key={idx} name={stat.stat?.name} value={stat.base_stat} />
+          );
         })}
       </div>
     </div>

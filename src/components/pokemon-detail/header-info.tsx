@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import TypeLabel from "components/type-label";
 import { formatNumber } from "utils/format-number";
 import { PokemonDetailProps } from ".";
+import CatchPokemon from "./catch-pokemon";
 
 const HeaderInfo = ({ data }: PokemonDetailProps) => {
   const types = ["grass", "poison"];
@@ -14,6 +15,7 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
     gap: 0.5em;
     padding: 1em;
     height: 250px;
+    position: relative;
 
     h1 {
       font-weight: bold;
@@ -49,6 +51,7 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
         <h1>{data.name}</h1>
         <span>{formatNumber(data.id!)}</span>
       </div>
+      <CatchPokemon />
       <div className="types">
         {types.map((type) => (
           <TypeLabel key={type}>{type}</TypeLabel>
