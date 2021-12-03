@@ -13,6 +13,7 @@ const Container: React.FC<{ className?: string }> = ({
         margin: "0px auto",
         padding: "0 16px 60px",
         flex: 1,
+        overflowX: "auto",
       }}
       {...props}
     >

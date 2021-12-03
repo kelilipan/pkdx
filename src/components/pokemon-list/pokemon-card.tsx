@@ -3,7 +3,7 @@
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 import { formatNumber } from "utils/format-number";
-import TypeLabel from "./type-label";
+import TypeLabel from "../type-label";
 
 export type PokemonCardProps = {
   data: Pokemon.PokemonItem;
