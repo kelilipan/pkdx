@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
-import { css } from "@emotion/react";
-import { PokemonLocal } from "utils/my-pokemon-context";
+import { css, useTheme } from "@emotion/react";
+import Button from "components/button";
+import { Link } from "react-router-dom";
+import { PokemonLocal, useMyPokemon } from "utils/my-pokemon-context";
 import PokemonCard from "./pokemon-card";
 
 export type PokemonListProps = {
@@ -9,6 +11,9 @@ export type PokemonListProps = {
 };
 
 const MyPokemonList = ({ data }: PokemonListProps) => {
+  const { releasePokemon } = useMyPokemon();
+  const theme = useTheme();
+  const isEmpty = data && data.length <= 0;
   const grid = css`
     margin-top: 1em;
     display: grid;
@@ -16,10 +21,30 @@ const MyPokemonList = ({ data }: PokemonListProps) => {
     grid-gap: 1em;
   `;
 
-  return (
+  return isEmpty ? (
+    <div css={{ marginTop: "4em", textAlign: "center" }}>
+      <p>Empty.</p>
+      <Link to="/">
+        <Button
+          css={{
+            marginTop: "1em",
+            fontWeight: "bold",
+            fontStyle: "italic",
+            backgroundColor: theme.color.type.water,
+          }}
+        >
+          Go catch them all!
+        </Button>
+      </Link>
+    </div>
+  ) : (
     <div css={grid}>
       {data?.map((pokemon: PokemonLocal, idx) => (
-        <PokemonCard key={idx} data={pokemon} />
+        <PokemonCard
+          key={idx}
+          data={pokemon}
+          handleRelease={() => releasePokemon(idx)}
+        />
       ))}
     </div>
   );

@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
 import { css, useTheme } from "@emotion/react";
+import Button from "components/button";
 import { lighten } from "polished";
+import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { formatNumber } from "utils/format-number";
 import { PokemonLocal } from "utils/my-pokemon-context";
@@ -9,9 +11,13 @@ import TypeLabel from "../type-label";
 
 export type PokemonCardProps = {
   data: PokemonLocal;
+  handleRelease: () => void;
 };
 
-const PokemonCard = ({ data: pokemonData }: PokemonCardProps) => {
+const PokemonCard = ({
+  data: pokemonData,
+  handleRelease,
+}: PokemonCardProps) => {
   const theme = useTheme();
   const type1 = pokemonData.types[0] || "unkown";
   const type2 = pokemonData.types[1] || type1 || "unkown";
@@ -21,7 +27,7 @@ const PokemonCard = ({ data: pokemonData }: PokemonCardProps) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    // background-color: ${theme.color.type.unkown};
+    height: 100%;
     background: ${theme.color.type[type1]};
     background: linear-gradient(
       45deg,
@@ -32,11 +38,7 @@ const PokemonCard = ({ data: pokemonData }: PokemonCardProps) => {
     padding: 1em;
     cursor: pointer;
     transition: 0.1s all ease;
-
-    &:hover {
-      transform: scale(1.02);
-      transition: 0.1s all ease;
-    }
+    position: relative;
   `;
 
   const image = css`
@@ -63,22 +65,58 @@ const PokemonCard = ({ data: pokemonData }: PokemonCardProps) => {
     min-height: 25px;
   `;
 
+  const releaseButton = css`
+    background-color: #e63946;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    border-radius: 100px;
+    z-index: 100;
+  `;
+
   return (
-    <Link to={"/pokemon/" + pokemonData.name} css={card}>
-      <img src={pokemonData.sprites} alt={pokemonData.name} css={image} />
-      <p css={{ fontSize: "0.8rem", margin: 0, opacity: 0.8 }}>
-        {formatNumber(pokemonData.id)}
-      </p>
-      <p css={name}>{pokemonData.nickname}</p>
-      <p css={{ textTransform: "capitalize", fontsize: "0.6em" }}>
-        ({pokemonData.name})
-      </p>
-      <div css={typesContainer}>
-        {pokemonData.types.map((type, idx) => {
-          return <TypeLabel key={idx}>{type}</TypeLabel>;
-        })}
-      </div>
-    </Link>
+    <div
+      css={css`
+        position: relative;
+        &:hover {
+          transform: scale(1.02);
+          transition: 0.1s all ease;
+        }
+        height: 100%;
+      `}
+    >
+      <Button
+        title="release pokemon"
+        css={releaseButton}
+        aria-label="Release pokemon"
+        onClick={() => handleRelease()}
+      >
+        <FaTrashAlt />
+      </Button>
+      <Link to={"/pokemon/" + pokemonData.name} css={card}>
+        <img src={pokemonData.sprites} alt={pokemonData.name} css={image} />
+        <p css={{ fontSize: "0.8rem", margin: 0, opacity: 0.8 }}>
+          {formatNumber(pokemonData.id)}
+        </p>
+        <p css={name}>{pokemonData.nickname}</p>
+        <p css={{ textTransform: "capitalize", fontsize: "0.6em" }}>
+          ({pokemonData.name})
+        </p>
+        <div css={typesContainer}>
+          {pokemonData.types.map((type, idx) => {
+            return <TypeLabel key={idx}>{type}</TypeLabel>;
+          })}
+        </div>
+      </Link>
+    </div>
   );
 };
 

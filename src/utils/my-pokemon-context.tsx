@@ -12,7 +12,7 @@ export type PokemonLocal = {
 type MyPokemonContextType = {
   myPokemon: PokemonLocal[];
   savePokemon: (pokemon: Pokemon.Pokemon, nickname: string) => void;
-  releasePokemon: (id: number) => void;
+  releasePokemon: (idx: number) => void;
 };
 
 const MyPokemonContext = createContext<MyPokemonContextType>({
@@ -39,10 +39,11 @@ const MyPokemonProvider: React.FC = (props) => {
     saveMyPokemon(payload);
   };
 
-  const releasePokemon = (id: number) => {
-    const filtered = myPokemon.filter((pokemon) => pokemon.id !== id);
+  const releasePokemon = (idx: number) => {
+    const filtered = [...myPokemon];
+    filtered.splice(idx, 1);
     setMyPokemon(filtered);
-    saveMyPokemon(myPokemon);
+    saveMyPokemon(filtered);
   };
 
   useEffect(() => {
