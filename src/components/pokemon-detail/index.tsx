@@ -11,10 +11,13 @@ export type PokemonDetailProps = {
   isLoading?: boolean;
 };
 
-const PokemonDetail = ({ data, isLoading }: PokemonDetailProps) => {
+const PokemonDetail = ({ data }: PokemonDetailProps) => {
   const ANIMATED_BASE =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/";
-  const types = ["grass", "poison"];
+  const types = data?.types;
+  const type1 = types?.[0]?.type?.name || "unkown";
+  const type2 = types?.[1]?.type?.name || type1 || "unkown";
+
   const [sprite, setSprite] = useState<string | undefined>("");
 
   useEffect(() => {
@@ -25,7 +28,12 @@ const PokemonDetail = ({ data, isLoading }: PokemonDetailProps) => {
 
   const theme = useTheme();
   const container = css`
-    background-color: ${darken(0.15, theme.color.type[types[0]])};
+    background: ${theme.color.type[type1]};
+    background: linear-gradient(
+      45deg,
+      ${darken(0.1, theme.color.type[type1])} 90%,
+      ${darken(0.1, theme.color.type[type2])} 100%
+    );
     display: flex;
     flex-direction: column;
     position: relative;

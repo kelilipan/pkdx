@@ -7,7 +7,7 @@ import { PokemonDetailProps } from ".";
 import CatchPokemon from "./catch-pokemon";
 
 const HeaderInfo = ({ data }: PokemonDetailProps) => {
-  const types = ["grass", "poison"];
+  const types = data?.types?.map((type) => type.type?.name);
   const header = css`
     color: white;
     display: flex;
@@ -52,7 +52,7 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
       </div>
       <CatchPokemon />
       <div className="types">
-        {types.map((type) => (
+        {types?.map((type) => (
           <TypeLabel key={type}>{type}</TypeLabel>
         ))}
       </div>
