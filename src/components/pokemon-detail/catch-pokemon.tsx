@@ -2,7 +2,11 @@
 
 import { css } from "@emotion/react";
 
-const CatchPokemon = () => {
+type CatchPokemonProps = {
+  handleCatch: () => void;
+};
+
+const CatchPokemon = ({ handleCatch }: CatchPokemonProps) => {
   const catchPokemon = css`
     cursor: pointer;
     position: absolute;
@@ -44,7 +48,12 @@ const CatchPokemon = () => {
     }
   `;
   return (
-    <div css={catchPokemon}>
+    <div
+      css={catchPokemon}
+      onClick={() => {
+        handleCatch();
+      }}
+    >
       <img src="/assets/pokeball.svg" alt="Pokeball" />
       <span>Catch!</span>
     </div>

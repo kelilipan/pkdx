@@ -1,8 +1,12 @@
 import { PokemonLocal } from "./my-pokemon-context";
 
 const readMyPokemon = () => {
-  const myPokemon = JSON.parse(localStorage.getItem("_mypokemon") || "");
-  return myPokemon === "" ? null : (myPokemon as PokemonLocal[]);
+  const localData = localStorage.getItem("_mypokemon");
+  if (localData === null) {
+    return null;
+  }
+  const myPokemon = JSON.parse(localData || "");
+  return myPokemon;
 };
 
 const saveMyPokemon = (myPokemon: PokemonLocal[]) => {

@@ -6,12 +6,12 @@ export type PokemonLocal = {
   name: string;
   sprites: string;
   types: string[];
-  nickname: string;
+  nickname?: string;
 };
 
 type MyPokemonContextType = {
   myPokemon: PokemonLocal[];
-  catchPokemon: (pokemon: PokemonLocal) => Promise<void>;
+  catchPokemon: (pokemon: Pokemon.Pokemon) => Promise<void>;
   releasePokemon: (id: number) => void;
 };
 
@@ -24,13 +24,23 @@ const MyPokemonContext = createContext<MyPokemonContextType>({
 const MyPokemonProvider: React.FC = (props) => {
   const [myPokemon, setMyPokemon] = useState<PokemonLocal[]>([]);
 
-  const catchPokemon = async (pokemon: PokemonLocal) => {
+  const catchPokemon = async (pokemon: Pokemon.Pokemon) => {
+    const pokemonPayload: PokemonLocal = {
+      id: pokemon.id!,
+      name: pokemon.name!,
+      types: pokemon.types!.map((type) => type.type?.name!),
+      sprites: pokemon.sprites?.front_default!,
+    };
+
     const result = new Promise<void>((resolve, reject) => {
       setTimeout(() => {
         const random = Math.random();
-        if (random > 0.5) {
-          setMyPokemon((myPokemon) => [...myPokemon, pokemon]);
-          saveMyPokemon(myPokemon);
+        if (random > 0) {
+          const nickname =
+            prompt(`Name your ${pokemon.name}`, pokemon.name) || pokemon.name;
+          const payload = [...myPokemon, { ...pokemonPayload, nickname }];
+          setMyPokemon(payload);
+          saveMyPokemon(payload);
           resolve();
         } else {
           reject(new Error(`${pokemon.name} run!!`));
@@ -47,9 +57,9 @@ const MyPokemonProvider: React.FC = (props) => {
   };
 
   useEffect(() => {
-    const localStorage = readMyPokemon();
-    if (localStorage) {
-      setMyPokemon(localStorage);
+    const localData = readMyPokemon();
+    if (localData) {
+      setMyPokemon(localData);
     }
   }, []);
 

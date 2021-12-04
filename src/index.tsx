@@ -7,12 +7,15 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import client from "lib/client";
+import { MyPokemonProvider } from "utils/my-pokemon-context";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ApolloProvider client={client}>
-        <App />
+        <MyPokemonProvider>
+          <App />
+        </MyPokemonProvider>
       </ApolloProvider>
     </BrowserRouter>
   </React.StrictMode>,
