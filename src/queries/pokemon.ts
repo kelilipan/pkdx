@@ -50,7 +50,7 @@ const GET_POKEMON_BY_NAME = gql`
 `;
 
 const GET_POKEMON_TYPE = gql`
-  query getType($name: String) {
+  query getType($name: String!) {
     pokemon(name: $name) {
       types {
         type {

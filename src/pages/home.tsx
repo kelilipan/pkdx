@@ -9,7 +9,7 @@ const Home = () => {
   const { data } = useQuery<{ pokemons: Pokemon.PokemonList }>(
     GET_POKEMON_LIST,
     {
-      variables: { offset: 0, limit: 20 },
+      variables: { offset: 0, limit: 8 },
     }
   );
   return (

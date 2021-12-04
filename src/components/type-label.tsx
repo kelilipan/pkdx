@@ -4,14 +4,14 @@ import { css, useTheme } from "@emotion/react";
 import { lighten } from "polished";
 
 type TypeLabelProps = {
-  children: string;
+  children?: string;
 };
 
 const TypeLabel = ({ children }: TypeLabelProps) => {
   const theme = useTheme();
   const label = css`
     color: black;
-    background: ${lighten(0.15, theme.color.type[children])};
+    background: ${lighten(0.15, theme.color.type[children || "unkwon"])};
     text-transform: uppercase;
     padding: 6px;
     border-radius: 25px;
