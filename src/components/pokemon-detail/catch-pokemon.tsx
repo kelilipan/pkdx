@@ -1,12 +1,53 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useMyPokemon } from "utils/my-pokemon-context";
+import ModalNickname from "./modal-pokemon-nickname";
 
 type CatchPokemonProps = {
-  handleCatch: () => void;
+  data?: Pokemon.Pokemon;
 };
 
-const CatchPokemon = ({ handleCatch }: CatchPokemonProps) => {
+const CatchPokemon = ({ data }: CatchPokemonProps) => {
+  const { savePokemon } = useMyPokemon();
+  const [isOpen, setModal] = useState(false);
+
+  const catchPromise = () => {
+    return new Promise<string>((resolve, reject) => {
+      setTimeout(() => {
+        const random = Math.random();
+        if (random > 0.5) {
+          resolve(data?.name || "");
+        } else {
+          reject(new Error(`${data?.name} run!!`));
+        }
+      }, 1000);
+    });
+  };
+
+  const handleCatch = () => {
+    toast.promise(
+      catchPromise().then(() => {
+        setModal(true);
+      }),
+      {
+        loading: "Throwing pokeball...",
+        success: (
+          <b style={{ textTransform: "capitalize" }}>
+            Wooohoo... you catch {data?.name}!
+          </b>
+        ),
+        error: (
+          <b style={{ textTransform: "capitalize" }}>
+            Whoops {data?.name} run!!
+          </b>
+        ),
+      }
+    );
+  };
+
   const catchPokemon = css`
     cursor: pointer;
     position: absolute;
@@ -47,16 +88,27 @@ const CatchPokemon = ({ handleCatch }: CatchPokemonProps) => {
       }
     }
   `;
+
   return (
-    <div
-      css={catchPokemon}
-      onClick={() => {
-        handleCatch();
-      }}
-    >
-      <img src="/assets/pokeball.svg" alt="Pokeball" />
-      <span>Catch!</span>
-    </div>
+    <>
+      <div
+        css={catchPokemon}
+        onClick={() => {
+          handleCatch();
+        }}
+      >
+        <img src="/assets/pokeball.svg" alt="Pokeball" />
+        <span>Catch!</span>
+      </div>
+      <ModalNickname
+        isOpen={isOpen}
+        onClose={() => setModal(false)}
+        handleSave={(nickname) => {
+          data && savePokemon(data, nickname);
+        }}
+        name={data?.name || ""}
+      />
+    </>
   );
 };
 

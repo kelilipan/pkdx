@@ -11,43 +11,32 @@ export type PokemonLocal = {
 
 type MyPokemonContextType = {
   myPokemon: PokemonLocal[];
-  catchPokemon: (pokemon: Pokemon.Pokemon) => Promise<void>;
+  savePokemon: (pokemon: Pokemon.Pokemon, nickname: string) => void;
   releasePokemon: (id: number) => void;
 };
 
 const MyPokemonContext = createContext<MyPokemonContextType>({
   myPokemon: [],
   releasePokemon: () => {},
-  catchPokemon: async () => {},
+  savePokemon: () => {},
 });
 
 const MyPokemonProvider: React.FC = (props) => {
   const [myPokemon, setMyPokemon] = useState<PokemonLocal[]>([]);
 
-  const catchPokemon = async (pokemon: Pokemon.Pokemon) => {
+  const savePokemon = (pokemon: Pokemon.Pokemon, nickname: string) => {
     const pokemonPayload: PokemonLocal = {
       id: pokemon.id!,
       name: pokemon.name!,
       types: pokemon.types!.map((type) => type.type?.name!),
       sprites: pokemon.sprites?.front_default!,
+      nickname,
     };
 
-    const result = new Promise<void>((resolve, reject) => {
-      setTimeout(() => {
-        const random = Math.random();
-        if (random > 0) {
-          const nickname =
-            prompt(`Name your ${pokemon.name}`, pokemon.name) || pokemon.name;
-          const payload = [...myPokemon, { ...pokemonPayload, nickname }];
-          setMyPokemon(payload);
-          saveMyPokemon(payload);
-          resolve();
-        } else {
-          reject(new Error(`${pokemon.name} run!!`));
-        }
-      }, 1000);
-    });
-    return result;
+    const payload = [...myPokemon, pokemonPayload];
+    setMyPokemon(payload);
+    //also save to local storage
+    saveMyPokemon(payload);
   };
 
   const releasePokemon = (id: number) => {
@@ -65,7 +54,7 @@ const MyPokemonProvider: React.FC = (props) => {
 
   return (
     <MyPokemonContext.Provider
-      value={{ myPokemon, catchPokemon, releasePokemon }}
+      value={{ myPokemon, releasePokemon, savePokemon }}
       {...props}
     />
   );

@@ -2,15 +2,12 @@
 
 import { css } from "@emotion/react";
 import TypeLabel from "components/type-label";
-import toast from "react-hot-toast";
 import { formatNumber } from "utils/format-number";
-import { useMyPokemon } from "utils/my-pokemon-context";
 import { PokemonDetailProps } from ".";
 import CatchPokemon from "./catch-pokemon";
 
 const HeaderInfo = ({ data }: PokemonDetailProps) => {
   const types = data?.types?.map((type) => type.type?.name);
-  const { catchPokemon } = useMyPokemon();
   const header = css`
     color: white;
     display: flex;
@@ -53,19 +50,7 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
         <h1>{data?.name}</h1>
         <span>{data && formatNumber(data?.id!)}</span>
       </div>
-      <CatchPokemon
-        handleCatch={() => {
-          toast.promise(catchPokemon(data!), {
-            loading: "Throwing pokeball...",
-            success: (
-              <b style={{ textTransform: "capitalize" }}>
-                {data?.name} catched!
-              </b>
-            ),
-            error: <b>{data?.name} run!</b>,
-          });
-        }}
-      />
+      <CatchPokemon data={data} />
       <div className="types">
         {types?.map((type) => (
           <TypeLabel key={type}>{type}</TypeLabel>
