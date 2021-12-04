@@ -42,8 +42,8 @@ const PokemonCard = ({
   `;
 
   const image = css`
-    width: 100px;
-    height: 100px;
+    width: 96px;
+    height: 96px;
   `;
 
   const name = css`
