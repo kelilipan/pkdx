@@ -76,6 +76,7 @@ const ModalNickname = ({
         <h2>Input {name} Nickname</h2>
         <form onSubmit={handleSubmit} id="pokemon-nickname">
           <input
+            maxLength={80}
             name="nickname"
             placeholder={name}
             defaultValue={name}
