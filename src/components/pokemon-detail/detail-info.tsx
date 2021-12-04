@@ -44,7 +44,7 @@ const DetailInfo = ({ data }: PokemonDetailProps) => {
     <div css={info}>
       <h2>Stats</h2>
       <div css={stats}>
-        {data.stats?.map((stat, idx) => {
+        {data?.stats?.map((stat, idx) => {
           return (
             <Stat key={idx} name={stat.stat?.name} value={stat.base_stat} />
           );
@@ -52,16 +52,16 @@ const DetailInfo = ({ data }: PokemonDetailProps) => {
       </div>
       <h2 css={{ marginTop: "2em" }}>Abilities</h2>
       <div css={ability}>
-        {data.abilities?.map((ability, idx) => (
+        {data?.abilities?.map((ability, idx) => (
           <span key={idx}>
             {ability.ability?.name}
-            {idx !== data.abilities!.length - 1 ? "," : ""}
+            {idx !== data?.abilities!.length - 1 ? "," : ""}
           </span>
         ))}
       </div>
       <h2 css={{ marginTop: "2em" }}>Moves</h2>
       <div css={stats}>
-        {data.moves?.map((move, idx) => {
+        {data?.moves?.map((move, idx) => {
           return <Move key={idx} name={move.move?.name} />;
         })}
       </div>

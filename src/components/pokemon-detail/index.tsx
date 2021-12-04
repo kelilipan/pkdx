@@ -2,21 +2,26 @@
 
 import { css, useTheme } from "@emotion/react";
 import { darken } from "polished";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DetailInfo from "./detail-info";
 import HeaderInfo from "./header-info";
 
 export type PokemonDetailProps = {
-  data: Pokemon.Pokemon;
+  data?: Pokemon.Pokemon;
+  isLoading?: boolean;
 };
 
-const PokemonDetail = ({ data }: PokemonDetailProps) => {
+const PokemonDetail = ({ data, isLoading }: PokemonDetailProps) => {
   const ANIMATED_BASE =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/";
   const types = ["grass", "poison"];
-  const [sprite, setSprite] = useState<string | undefined>(
-    ANIMATED_BASE + data.id + ".gif"
-  );
+  const [sprite, setSprite] = useState<string | undefined>("");
+
+  useEffect(() => {
+    if (data) {
+      setSprite(ANIMATED_BASE + data.id + ".gif");
+    }
+  }, [data]);
 
   const theme = useTheme();
   const container = css`
@@ -46,8 +51,8 @@ const PokemonDetail = ({ data }: PokemonDetailProps) => {
       <img
         css={sprites}
         src={sprite}
-        onError={() => setSprite(data.sprites?.front_default)}
-        alt={data.name}
+        onError={() => setSprite(data?.sprites?.front_default)}
+        alt={data?.name}
       />
       <DetailInfo data={data} />
     </div>

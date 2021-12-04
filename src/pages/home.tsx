@@ -12,6 +12,7 @@ const Home = () => {
       variables: { offset: 0, limit: 8 },
     }
   );
+
   return (
     <Container css={{ paddingTop: "1em" }}>
       <PokemonList data={data?.pokemons} />

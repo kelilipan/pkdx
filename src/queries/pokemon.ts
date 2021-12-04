@@ -15,7 +15,7 @@ const GET_POKEMON_LIST = gql`
 `;
 
 const GET_POKEMON_BY_NAME = gql`
-  query pokemon($name: String) {
+  query pokemon($name: String!) {
     pokemon(name: $name) {
       id
       name

@@ -26,7 +26,7 @@ const Stat = ({ name, value }: StatProps) => {
       <span css={{ width: "25%", textTransform: "capitalize" }}>
         {formattedName}
       </span>
-      <span css={{ fontWeight: "bold" }}>{value}</span>
+      <span css={{ fontWeight: "bold", width: "30px" }}>{value}</span>
       <div
         css={{
           background: "#ccc",

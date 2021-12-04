@@ -14,7 +14,7 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
     flex-direction: column;
     gap: 0.5em;
     padding: 1em;
-    height: 230px;
+    height: 250px;
     position: relative;
 
     h1 {
@@ -47,8 +47,8 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
   return (
     <div css={header}>
       <div className="title">
-        <h1>{data.name}</h1>
-        <span>{formatNumber(data.id!)}</span>
+        <h1>{data?.name}</h1>
+        <span>{data && formatNumber(data?.id!)}</span>
       </div>
       <CatchPokemon />
       <div className="types">
@@ -56,8 +56,8 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
           <TypeLabel key={type}>{type}</TypeLabel>
         ))}
       </div>
-      <p>Weight : {data.weight && data.weight / 10} kg</p>
-      <p>Height : {data.height && data.height * 10} cm</p>
+      <p>Weight : {data?.weight && data?.weight / 10} kg</p>
+      <p>Height : {data?.height && data?.height * 10} cm</p>
     </div>
   );
 };
