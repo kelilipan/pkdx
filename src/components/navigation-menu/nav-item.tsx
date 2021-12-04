@@ -12,6 +12,7 @@ export type NavItemProps = {
 
 const NavItem = ({ icon, text, isActive, path }: NavItemProps) => {
   const container = css`
+    background-color: #fff;
     height: 90%;
     display: flex;
     flex-direction: column;

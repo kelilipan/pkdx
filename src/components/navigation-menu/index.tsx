@@ -14,7 +14,6 @@ const NavigationMenu = () => {
   `;
 
   const navContainer = css`
-    background-color: #fff;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2px;
