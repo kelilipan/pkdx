@@ -14,7 +14,7 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
     flex-direction: column;
     gap: 0.5em;
     padding: 1em;
-    height: 250px;
+    height: 230px;
     position: relative;
 
     h1 {
