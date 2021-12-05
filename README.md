@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+# PkDx: A PokeDex app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="public/android-chrome-192x192.png" alt='PKDX'>
+</p>
 
-## Available Scripts
+<p align='center'>
+A simple pokedex web app built with react.js & typescript made by <a href='https://wisesa.dev'>Wisesa.dev</a>.
+</p>
 
-In the project directory, you can run:
+## Run Locally
 
-### `yarn start`
+### Prerequisite
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Node.js](https://nodejs.org/)
+- [yarn](https://yarnpkg.com/getting-started/install) (recommended)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Clone the project
 
-### `yarn test`
+```bash
+  git clone https://github.com/svspicious/pkdx
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Go to the project directory
 
-### `yarn build`
+```bash
+  cd pkdx
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+  yarn
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start the development server
 
-### `yarn eject`
+```bash
+  yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Open http://localhost:3000 with your browser to see the result.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running test
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+yarn test
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Built Using
 
-## Learn More
+- [Create React App](https://create-react-app.dev/) to initialize the project.
+- [Emotion ⚡](https://emotion.sh/) for layout & styling.
+- [Apollo](https://www.apollographql.com/docs/react/get-started/) graphql client.
+- [mazipan/graphql-pokeapi](https://github.com/mazipan/graphql-pokeapi) for graphql api.
+- [Jest](https://jestjs.io/) & [react testing-library](https://testing-library.com/) for testing.
+- Written in [typescript](https://typescriptlang.org).
+- [Hosted on Vercel 🚀](https://vercel.com/).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Deploy your own
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsvspicious%2Fpkdx)
+
+## Feedback
+
+If you have any feedback or issues, you can submit it [here](https://github.com/svspicious/pkdx/issues).
+
+## License
+
+This project licensed under [MIT License, Copyright (c) 2021 Wisesa](./LICENSE)
+
+**_Pokémon © 2002-2021 Pokémon. © 1995-2021 Nintendo/Creatures Inc./GAME FREAK inc. TM, ® and Pokémon character names are trademarks of Nintendo._**
