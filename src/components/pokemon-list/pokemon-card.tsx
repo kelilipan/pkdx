@@ -36,10 +36,11 @@ const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
   const type2 = typelist?.[1]?.type?.name || type1 || "unkown";
 
   const card = css`
+    max-width: 216px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // background-color: ${theme.color.type.unkown};
+    height: 100%;
     background: ${theme.color.type[type1]};
     background: linear-gradient(
       45deg,
@@ -47,7 +48,7 @@ const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
       ${lighten(0.1, theme.color.type[type2])} 100%
     );
     border-radius: 5px;
-    padding: 1em;
+    padding: 0.5em;
     cursor: pointer;
     transition: 0.1s all ease;
 
@@ -63,15 +64,19 @@ const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
   `;
 
   const name = css`
-    margin: 0;
+    margin-bottom: 0.2em;
     font-weight: 500;
     font-size: 24px;
-    text-transform: capitalize;
+    word-wrap: break-word;
+    text-align: center;
+    max-width: 180px;
   `;
 
   const typesContainer = css`
+    max-width: 180px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 4px;
     margin-top: 0.5em;
     font-size: 0.8rem;

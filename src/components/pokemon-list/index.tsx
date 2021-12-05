@@ -11,6 +11,7 @@ export type PokemonListProps = {
 
 const PokemonList = ({ data, handleLoadMore }: PokemonListProps) => {
   const grid = css`
+    margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1em;
@@ -21,24 +22,22 @@ const PokemonList = ({ data, handleLoadMore }: PokemonListProps) => {
   const hasMore = data ? data.count > currentLength : true;
 
   return (
-    <div>
-      <InfiniteScroll
-        css={grid}
-        dataLength={currentLength}
-        next={handleLoadMore}
-        hasMore={hasMore}
-        loader={
-          <p css={{ gridColumn: "1 / span 2", textAlign: "center" }}>
-            Loading pokemon...
-          </p>
-        }
-        scrollThreshold={0.7}
-      >
-        {data?.results.map((pokemon: Pokemon.PokemonItem) => (
-          <PokemonCard key={pokemon.id} data={pokemon} />
-        ))}
-      </InfiniteScroll>
-    </div>
+    <InfiniteScroll
+      css={grid}
+      dataLength={currentLength}
+      next={handleLoadMore}
+      hasMore={hasMore}
+      loader={
+        <p css={{ gridColumn: "1 / span 2", textAlign: "center" }}>
+          Loading pokemon...
+        </p>
+      }
+      scrollThreshold={0.7}
+    >
+      {data?.results.map((pokemon: Pokemon.PokemonItem) => (
+        <PokemonCard key={pokemon.id} data={pokemon} />
+      ))}
+    </InfiniteScroll>
   );
 };
 export default PokemonList;

@@ -59,6 +59,7 @@ const PokemonCard = ({
   const typesContainer = css`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 4px;
     margin-top: 0.5em;
     font-size: 0.8rem;
