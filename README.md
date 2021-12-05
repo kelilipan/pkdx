@@ -8,6 +8,10 @@
 A simple pokedex web app built with react.js & typescript made by <a href='https://wisesa.dev'>Wisesa.dev</a>.
 </p>
 
+<p align="center">
+  <img src="preview.png" alt='PKDX'>
+</p>
+
 ## Run Locally
 
 ### Prerequisite
