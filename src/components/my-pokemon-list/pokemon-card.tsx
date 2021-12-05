@@ -66,6 +66,7 @@ const PokemonCard = ({
   `;
 
   const releaseButton = css`
+    opacity: 0.8;
     background-color: #e63946;
     color: white;
     display: flex;
@@ -80,6 +81,9 @@ const PokemonCard = ({
     text-align: center;
     border-radius: 100px;
     z-index: 100;
+    &:hover {
+      opacity: 1;
+    }
   `;
 
   return (
