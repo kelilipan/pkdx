@@ -13,6 +13,7 @@ type CatchPokemonProps = {
 const CatchPokemon = ({ data }: CatchPokemonProps) => {
   const { savePokemon } = useMyPokemon();
   const [isOpen, setModal] = useState(false);
+  const [isCatching, setCatching] = useState(false);
 
   const catchPromise = () => {
     return new Promise<string>((resolve, reject) => {
@@ -28,24 +29,31 @@ const CatchPokemon = ({ data }: CatchPokemonProps) => {
   };
 
   const handleCatch = () => {
-    toast.promise(
-      catchPromise().then(() => {
-        setModal(true);
-      }),
-      {
-        loading: "Throwing pokeball...",
-        success: (
-          <b style={{ textTransform: "capitalize" }}>
-            Wooohoo... you catch {data?.name}!
-          </b>
-        ),
-        error: (
-          <b style={{ textTransform: "capitalize" }}>
-            Whoops {data?.name} run!!
-          </b>
-        ),
-      }
-    );
+    if (!isCatching) {
+      setCatching(true);
+      toast.promise(
+        catchPromise()
+          .then(() => {
+            setModal(true);
+          })
+          .finally(() => {
+            setCatching(false);
+          }),
+        {
+          loading: "Throwing pokeball...",
+          success: (
+            <b style={{ textTransform: "capitalize" }}>
+              Wooohoo... you catch {data?.name}!
+            </b>
+          ),
+          error: (
+            <b style={{ textTransform: "capitalize" }}>
+              Whoops {data?.name} run!!
+            </b>
+          ),
+        }
+      );
+    }
   };
 
   const catchPokemon = css`
