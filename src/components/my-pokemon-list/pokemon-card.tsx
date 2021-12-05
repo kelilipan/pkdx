@@ -50,7 +50,6 @@ const PokemonCard = ({
     margin-bottom: 0.2em;
     font-weight: 500;
     font-size: 24px;
-    text-transform: capitalize;
     word-wrap: break-word;
     text-align: center;
     max-width: 180px;
