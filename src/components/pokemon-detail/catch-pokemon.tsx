@@ -56,6 +56,13 @@ const CatchPokemon = ({ data }: CatchPokemonProps) => {
     }
   };
 
+  const handleSave = (nickname: string) => {
+    if (data) {
+      savePokemon(data, nickname);
+      toast.success(`${nickname} stored!`);
+    }
+  };
+
   const catchPokemon = css`
     cursor: pointer;
     position: absolute;
@@ -111,9 +118,7 @@ const CatchPokemon = ({ data }: CatchPokemonProps) => {
       <ModalNickname
         isOpen={isOpen}
         onClose={() => setModal(false)}
-        handleSave={(nickname) => {
-          data && savePokemon(data, nickname);
-        }}
+        handleSave={handleSave}
         name={data?.name || ""}
       />
     </>
