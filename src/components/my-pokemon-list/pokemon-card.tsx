@@ -5,6 +5,7 @@ import Button from "components/button";
 import { lighten } from "polished";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { convertStatically } from "utils/convert-statically-url";
 import { formatNumber } from "utils/format-number";
 import { PokemonLocal } from "utils/my-pokemon-context";
 import TypeLabel from "../type-label";
@@ -101,7 +102,11 @@ const PokemonCard = ({
         <FaTrashAlt />
       </Button>
       <Link to={"/pokemon/" + pokemonData.name} css={card}>
-        <img src={pokemonData.sprites} alt={pokemonData.name} css={image} />
+        <img
+          src={convertStatically(pokemonData.sprites)}
+          alt={pokemonData.name}
+          css={image}
+        />
         <p css={{ fontSize: "0.8rem", margin: 0, opacity: 0.8 }}>
           {formatNumber(pokemonData.id)}
         </p>

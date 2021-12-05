@@ -3,6 +3,7 @@
 import { css, useTheme } from "@emotion/react";
 import { darken } from "polished";
 import { useEffect, useState } from "react";
+import { convertStatically } from "utils/convert-statically-url";
 import DetailInfo from "./detail-info";
 import HeaderInfo from "./header-info";
 
@@ -58,7 +59,7 @@ const PokemonDetail = ({ data }: PokemonDetailProps) => {
       <HeaderInfo data={data} />
       <img
         css={sprites}
-        src={sprite}
+        src={convertStatically(sprite || "")}
         onError={() => setSprite(data?.sprites?.front_default)}
         alt={data?.name}
       />
