@@ -5,6 +5,7 @@ import MyPokemon from "pages/my-pokemon";
 import NotFound from "pages/404";
 import { useEffect } from "react";
 import { useLocation } from "react-router";
+import About from "pages/about";
 
 const Routes = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const Routes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/pokemon/:name" element={<PokemonDetail />} />
       <Route path="/my-pokemon" element={<MyPokemon />} />
+      <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />
     </ReactRoutes>
   );
