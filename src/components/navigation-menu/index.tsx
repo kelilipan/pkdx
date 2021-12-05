@@ -2,7 +2,7 @@
 
 import { css } from "@emotion/react";
 import NavItem, { NavItemProps } from "./nav-item";
-import { CgPokemon, CgHome, CgInfo } from "react-icons/cg";
+import { CgPokemon, CgInfo, CgSearch } from "react-icons/cg";
 import { useLocation } from "react-router";
 
 const NavigationMenu = () => {
@@ -30,8 +30,8 @@ const NavigationMenu = () => {
       path: "/my-pokemon",
     },
     {
-      icon: <CgHome />,
-      text: "Home",
+      icon: <CgSearch />,
+      text: "Find Pokémon",
       path: "/",
     },
     {
