@@ -6,16 +6,20 @@ import PokemonList from "components/pokemon-list";
 import { GET_POKEMON_LIST } from "queries/pokemon";
 
 const Home = () => {
-  const { data } = useQuery<{ pokemons: Pokemon.PokemonList }>(
+  const limit = 12;
+  const { data, fetchMore } = useQuery<{ pokemons: Pokemon.PokemonList }>(
     GET_POKEMON_LIST,
     {
-      variables: { offset: 0, limit: 8 },
+      variables: { offset: 0, limit },
     }
   );
+  const loadMore = () => {
+    fetchMore({ variables: { offset: data?.pokemons.results.length } });
+  };
 
   return (
     <Container css={{ paddingTop: "1em" }}>
-      <PokemonList data={data?.pokemons} />
+      <PokemonList data={data?.pokemons} handleLoadMore={loadMore} />
     </Container>
   );
 };
