@@ -2,11 +2,29 @@
 
 import { css } from "@emotion/react";
 import TypeLabel from "components/type-label";
+import ContentLoader from "react-content-loader";
 import { formatNumber } from "utils/format-number";
 import { PokemonDetailProps } from ".";
 import CatchPokemon from "./catch-pokemon";
 
-const HeaderInfo = ({ data }: PokemonDetailProps) => {
+const Skeleton = () => {
+  return (
+    <ContentLoader
+      speed={2}
+      width={400}
+      height={250}
+      viewBox="0 0 400 250"
+      backgroundColor="#8ab8ac"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="15" y={35} rx="0" ry="0" width="220" height="24" />
+      <rect x="15" y={35 + 30} rx="0" ry="0" width="120" height="18" />
+      <rect x="15" y={35 + 30 + 25} rx="0" ry="0" width="80" height="18" />
+    </ContentLoader>
+  );
+};
+
+const HeaderInfo = ({ data, isLoading }: PokemonDetailProps) => {
   const types = data?.types?.map((type) => type.type?.name);
   const header = css`
     color: white;
@@ -44,7 +62,11 @@ const HeaderInfo = ({ data }: PokemonDetailProps) => {
     }
   `;
 
-  return (
+  return isLoading ? (
+    <div css={{ height: "250px" }}>
+      <Skeleton />
+    </div>
+  ) : (
     <div css={header}>
       <div className="title">
         <h1>{data?.name}</h1>

@@ -1,12 +1,33 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
+import ContentLoader from "react-content-loader";
 import { PokemonDetailProps } from ".";
 import Move from "./move";
 import Stat from "./stat";
 
-const DetailInfo = ({ data }: PokemonDetailProps) => {
+const Sketelon = () => {
+  return (
+    <ContentLoader
+      speed={2}
+      width={400}
+      height={136}
+      viewBox="0 0 400 135"
+      backgroundColor="#eee"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y={25} rx="5" ry="5" width="400" height="10" />
+      <rect x="0" y={25 * 2} rx="5" ry="5" width="400" height="10" />
+      <rect x="0" y={25 * 3} rx="5" ry="5" width="400" height="10" />
+      <rect x="0" y={25 * 4} rx="5" ry="5" width="400" height="10" />
+      <rect x="0" y={25 * 5} rx="5" ry="5" width="400" height="10" />
+    </ContentLoader>
+  );
+};
+
+const DetailInfo = ({ data, isLoading }: PokemonDetailProps) => {
   const info = css`
+    flex: 1;
     padding: 2rem;
     background: #fff;
     border-radius: 2.5rem 2.5rem 0 0;
@@ -44,11 +65,15 @@ const DetailInfo = ({ data }: PokemonDetailProps) => {
     <div css={info}>
       <h2>Stats</h2>
       <div css={stats}>
-        {data?.stats?.map((stat, idx) => {
-          return (
-            <Stat key={idx} name={stat.stat?.name} value={stat.base_stat} />
-          );
-        })}
+        {isLoading ? (
+          <Sketelon />
+        ) : (
+          data?.stats?.map((stat, idx) => {
+            return (
+              <Stat key={idx} name={stat.stat?.name} value={stat.base_stat} />
+            );
+          })
+        )}
       </div>
       <h2 css={{ marginTop: "2em" }}>Abilities</h2>
       <div css={ability}>

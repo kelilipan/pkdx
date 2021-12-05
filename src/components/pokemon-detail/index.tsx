@@ -3,6 +3,7 @@
 import { css, useTheme } from "@emotion/react";
 import { darken } from "polished";
 import { useEffect, useState } from "react";
+import ContentLoader from "react-content-loader";
 import { convertStatically } from "utils/convert-statically-url";
 import DetailInfo from "./detail-info";
 import HeaderInfo from "./header-info";
@@ -12,14 +13,30 @@ export type PokemonDetailProps = {
   isLoading?: boolean;
 };
 
-const PokemonDetail = ({ data }: PokemonDetailProps) => {
+const ImageSkeleton = ({ className }: { className?: string }) => (
+  <ContentLoader
+    className={className}
+    speed={2}
+    width={200}
+    height={200}
+    viewBox="0 0 200 200"
+    backgroundColor="#8ab8ac"
+    foregroundColor="#ecebeb"
+  >
+    <rect x="0" y="0" rx="0" ry="0" width="200" height="200" />
+  </ContentLoader>
+);
+
+const PokemonDetail = ({ data, isLoading }: PokemonDetailProps) => {
   const ANIMATED_BASE =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/";
   const types = data?.types;
   const type1 = types?.[0]?.type?.name || "unkown";
   const type2 = types?.[1]?.type?.name || type1 || "unkown";
 
-  const [sprite, setSprite] = useState<string | undefined>("");
+  const [sprite, setSprite] = useState<string | undefined>(
+    data?.sprites?.front_default
+  );
 
   useEffect(() => {
     if (data) {
@@ -56,14 +73,18 @@ const PokemonDetail = ({ data }: PokemonDetailProps) => {
 
   return (
     <div css={container}>
-      <HeaderInfo data={data} />
-      <img
-        css={sprites}
-        src={convertStatically(sprite || "")}
-        onError={() => setSprite(data?.sprites?.front_default)}
-        alt={data?.name}
-      />
-      <DetailInfo data={data} />
+      <HeaderInfo data={data} isLoading={isLoading} />
+      {isLoading ? (
+        <ImageSkeleton css={sprites} />
+      ) : (
+        <img
+          css={sprites}
+          src={convertStatically(sprite || "")}
+          onError={() => setSprite(data?.sprites?.front_default)}
+          alt={data?.name}
+        />
+      )}
+      <DetailInfo data={data} isLoading={isLoading} />
     </div>
   );
 };

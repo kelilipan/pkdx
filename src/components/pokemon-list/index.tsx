@@ -15,6 +15,7 @@ const PokemonList = ({ data, handleLoadMore }: PokemonListProps) => {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1em;
     padding-bottom: 1em;
+    overflow: visible !important;
   `;
   const currentLength = data ? data.results.length : 0;
   const hasMore = data ? data.count > currentLength : true;
