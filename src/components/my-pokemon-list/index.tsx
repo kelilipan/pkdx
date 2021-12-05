@@ -2,6 +2,7 @@
 
 import { css, useTheme } from "@emotion/react";
 import Button from "components/button";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { PokemonLocal, useMyPokemon } from "utils/my-pokemon-context";
 import PokemonCard from "./pokemon-card";
@@ -20,6 +21,10 @@ const MyPokemonList = ({ data }: PokemonListProps) => {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1em;
   `;
+  const handleRelease = (idx: number, nickname?: string) => {
+    releasePokemon(idx);
+    toast.success(`${nickname} released`);
+  };
 
   return isEmpty ? (
     <div css={{ marginTop: "4em", textAlign: "center" }}>
@@ -43,7 +48,7 @@ const MyPokemonList = ({ data }: PokemonListProps) => {
         <PokemonCard
           key={idx}
           data={pokemon}
-          handleRelease={() => releasePokemon(idx)}
+          handleRelease={() => handleRelease(idx, pokemon.nickname)}
         />
       ))}
     </div>

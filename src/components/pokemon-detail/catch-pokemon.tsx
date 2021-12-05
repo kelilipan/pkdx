@@ -59,7 +59,7 @@ const CatchPokemon = ({ data }: CatchPokemonProps) => {
   const handleSave = (nickname: string) => {
     if (data) {
       savePokemon(data, nickname);
-      toast.success(`${nickname} stored!`);
+      toast.success(`${nickname} captured!`);
     }
   };
 
