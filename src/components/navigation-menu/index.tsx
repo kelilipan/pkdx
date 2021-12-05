@@ -11,6 +11,7 @@ const NavigationMenu = () => {
     height: 60px;
     position: fixed;
     bottom: 0;
+    z-index: 1000;
   `;
 
   const navContainer = css`
