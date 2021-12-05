@@ -108,6 +108,7 @@ const PokemonCard = ({
       </Button>
       <Link to={"/pokemon/" + pokemonData.name} css={card}>
         <img
+          crossOrigin="anonymous"
           src={convertStatically(pokemonData.sprites)}
           alt={pokemonData.name}
           css={image}

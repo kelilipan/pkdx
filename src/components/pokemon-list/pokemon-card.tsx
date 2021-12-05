@@ -86,6 +86,7 @@ const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
   return (
     <Link to={"/pokemon/" + pokemonData.name} css={card}>
       <img
+        crossOrigin="anonymous"
         src={convertStatically(pokemonData.image)}
         alt={pokemonData.name}
         css={image}

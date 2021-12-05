@@ -112,7 +112,11 @@ const CatchPokemon = ({ data }: CatchPokemonProps) => {
           handleCatch();
         }}
       >
-        <img src="/assets/pokeball.svg" alt="Pokeball" />
+        <img
+          crossOrigin="anonymous"
+          src="/assets/pokeball.svg"
+          alt="Pokeball"
+        />
         <span>Catch!</span>
       </div>
       <ModalNickname

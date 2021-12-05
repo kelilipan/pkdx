@@ -78,6 +78,7 @@ const PokemonDetail = ({ data, isLoading }: PokemonDetailProps) => {
         <ImageSkeleton css={sprites} />
       ) : (
         <img
+          crossOrigin="anonymous"
           css={sprites}
           src={convertStatically(sprite || "")}
           onError={() => setSprite(data?.sprites?.front_default)}
