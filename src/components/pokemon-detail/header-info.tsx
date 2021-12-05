@@ -34,7 +34,7 @@ const HeaderInfo = ({ data, isLoading }: PokemonDetailProps) => {
     padding: 1em;
     height: 250px;
     position: relative;
-
+    z-index: 2;
     h1 {
       font-weight: bold;
       font-size: 2em;
