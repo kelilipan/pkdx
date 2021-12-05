@@ -23,7 +23,7 @@ const Stat = ({ name, value }: StatProps) => {
 
   return (
     <div css={stat}>
-      <span css={{ width: "25%", textTransform: "capitalize" }}>
+      <span css={{ width: "104px", textTransform: "capitalize" }}>
         {formattedName}
       </span>
       <span css={{ fontWeight: "bold", width: "30px" }}>{value}</span>
