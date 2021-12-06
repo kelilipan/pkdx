@@ -51,6 +51,10 @@ Open http://localhost:3000 with your browser to see the result.
 yarn test
 ```
 
+## Github Actions
+
+This project has a github actions scripts to run `yarn test` & lighthouse assertion, see it in [**_actions_**](https://github.com/svspicious/pkdx/actions) (ha! get it?).
+
 ## Built Using
 
 - [Create React App](https://create-react-app.dev/) to initialize the project.
