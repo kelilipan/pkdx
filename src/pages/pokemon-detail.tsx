@@ -12,7 +12,6 @@ const PokemonDetailPage = () => {
   const { loading, data, error } = useQuery<{
     pokemon: Pokemon.Pokemon;
   }>(GET_POKEMON_BY_NAME, { variables: { name }, errorPolicy: "all" });
-
   return (
     <Container css={{ paddingLeft: 0, paddingRight: 0 }}>
       {error ? (

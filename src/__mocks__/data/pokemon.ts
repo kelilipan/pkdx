@@ -1,4 +1,4 @@
-const pokemon: Pokemon.Pokemon = {
+const ivysaur: Pokemon.Pokemon = {
   name: "ivysaur",
   id: 2,
   sprites: {
@@ -405,4 +405,4 @@ const pokemon: Pokemon.Pokemon = {
   ],
 };
 
-export { pokemon };
+export { ivysaur };
