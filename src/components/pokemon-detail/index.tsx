@@ -61,7 +61,6 @@ const PokemonDetail = ({ data, isLoading }: PokemonDetailProps) => {
 
   const sprites = css`
     position: absolute;
-    width: 200px;
     height: 200px;
     top: 180px;
     left: 50%;
