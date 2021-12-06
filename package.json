@@ -45,8 +45,6 @@
   "jest": {
     "collectCoverageFrom": [
       "./src/(components|pages)/**/*.(ts|tsx|js|jsx)",
-      "!./src/(components|pages)/**/__tests__/**/*.test.(ts|tsx|js|jsx)",
-      "!./src/(components|pages)/**/__mocks__/**/*.(ts|tsx|js|jsx)",
       "!./src/utils/test-utils.tsx"
     ]
   },

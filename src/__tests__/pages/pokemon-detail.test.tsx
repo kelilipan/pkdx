@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import PokemonDetail from "pages/pokemon-detail";
 import { testRendererWithRoute } from "utils/test-utils";
 
@@ -75,6 +75,9 @@ describe("Pokemon Detail page", () => {
     });
     render();
 
+    await waitForElementToBeRemoved(() =>
+      screen.queryByTestId("image-loading-skeleton")
+    );
     const notFound = await screen.findByRole("heading", { name: /not found/i });
     const text = await screen.findByText(/page is not available\./i);
     const backToHome = await screen.findByRole("link", {

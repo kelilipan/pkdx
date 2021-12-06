@@ -15,6 +15,7 @@ export type PokemonDetailProps = {
 
 const ImageSkeleton = ({ className }: { className?: string }) => (
   <ContentLoader
+    data-testid="image-loading-skeleton"
     className={className}
     speed={2}
     width={200}
