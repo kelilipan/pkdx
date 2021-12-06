@@ -25,6 +25,7 @@ const Move = ({ name }: MoveProps) => {
         href={"https://pokemondb.net/move/" + name}
         target="_blank"
         rel="noreferrer noopener"
+        aria-label={formattedName}
       >
         <FaExternalLinkAlt />
       </a>
