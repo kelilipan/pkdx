@@ -58,9 +58,10 @@ This project has a github actions scripts to run `yarn test` & lighthouse assert
 ## Built Using
 
 - [Create React App](https://create-react-app.dev/) to initialize the project.
-- [Emotion ⚡](https://emotion.sh/) for layout & styling.
+- [Emotion.sh ⚡](https://emotion.sh/) css-injs.
 - [Apollo](https://www.apollographql.com/docs/react/get-started/) graphql client.
 - [mazipan/graphql-pokeapi](https://github.com/mazipan/graphql-pokeapi) for graphql api.
+- [Workbox ⚙️](https://developers.google.com/web/tools/workbox/modules/workbox-strategies) for creating service worker.
 - [Jest](https://jestjs.io/) & [react testing-library](https://testing-library.com/) for testing.
 - Written in [typescript](https://typescriptlang.org).
 - [Hosted on Vercel 🚀](https://vercel.com/).
