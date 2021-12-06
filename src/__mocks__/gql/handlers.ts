@@ -1,6 +1,7 @@
 import { graphql } from "msw";
 import { notFound } from "__mocks__/data/not-found";
-import { ivysaur } from "../data/pokemon";
+import { ivysaur, pokemonTypes } from "../data/pokemon";
+import { pokemons } from "__mocks__/data/pokemons";
 
 export const handlers = [
   graphql.query("getPokemonByName", (req, res, ctx) => {
@@ -13,5 +14,21 @@ export const handlers = [
         ctx.data({ pokemon: notFound.data.pokemon })
       );
     }
+  }),
+  graphql.query("getType", (_, res, ctx) => {
+    return res(
+      ctx.data({
+        pokemon: {
+          types: pokemonTypes,
+        },
+      })
+    );
+  }),
+  graphql.query("getPokemonList", (_, res, ctx) => {
+    return res(
+      ctx.data({
+        pokemons,
+      })
+    );
   }),
 ];

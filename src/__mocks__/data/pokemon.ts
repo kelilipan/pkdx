@@ -405,4 +405,21 @@ const ivysaur: Pokemon.Pokemon = {
   ],
 };
 
-export { ivysaur };
+const pokemonTypes = {
+  types: [
+    {
+      type: {
+        id: null,
+        name: "grass",
+      },
+    },
+    {
+      type: {
+        id: null,
+        name: "poison",
+      },
+    },
+  ],
+};
+
+export { ivysaur, pokemonTypes };
