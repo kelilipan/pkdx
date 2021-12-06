@@ -29,8 +29,8 @@ const NavItem = ({ icon, text, isActive, path }: NavItemProps) => {
   `;
   const active = css`
     height: 100%;
-    background-color: #e63946;
-    outline-color: #e63946;
+    background-color: #d72528;
+    outline-color: #d72528;
     color: white;
     & > div {
       transform: scale(1.3);
