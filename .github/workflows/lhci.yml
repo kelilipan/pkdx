@@ -12,7 +12,7 @@ jobs:
             https://pkdx.wisesa.dev/
             https://pkdx.wisesa.dev/about
             https://pkdx.wisesa.dev/my-pokemon
-            https://pkdx.wisesa.dev/pokemon/ivysaur
+            https://pkdx.wisesa.dev/pokemon/rayquaza
           configPath: "./lighthouserc.json"
           uploadArtifacts: true
           temporaryPublicStorage: true
