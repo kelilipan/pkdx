@@ -38,7 +38,11 @@ const NavItem = ({ icon, text, isActive, path }: NavItemProps) => {
   `;
 
   return (
-    <Link to={path} css={[container, isActive && active]}>
+    <Link
+      to={path}
+      css={[container, isActive && active]}
+      data-isactive={isActive}
+    >
       <div css={{ fontSize: "1.5rem", transition: "0.15s all ease" }}>
         {icon}
       </div>
