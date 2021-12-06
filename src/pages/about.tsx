@@ -46,13 +46,13 @@ const About = () => {
         .
       </p>
       <p>
-        This app is open source, you can see the source code{" "}
+        This app is open source, you can see the{" "}
         <a
           href="https://github.com/svspicious/pkdx"
           target="_blank"
           rel="noopener noreferrer"
         >
-          here
+          source code here
         </a>
         .
       </p>
