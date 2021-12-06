@@ -8,5 +8,11 @@ jobs:
       - name: Run Lighthouse on urls and validate with lighthouserc
         uses: treosh/lighthouse-ci-action@v8
         with:
-          urls: 'https://pkdx.wisesa.dev'
-          configPath: './lighthouserc.json'
+          urls: |
+            https://pkdx.wisesa.dev/
+            https://pkdx.wisesa.dev/about
+            https://pkdx.wisesa.dev/my-pokemon
+            https://pkdx.wisesa.dev/pokemon/ivysaur
+          configPath: "./lighthouserc.json"
+          uploadArtifacts: true
+          temporaryPublicStorage: true
