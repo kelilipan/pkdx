@@ -18,7 +18,7 @@ const SoundContextProvider: React.FC = ({ children }) => {
 
   const clickSound = () => {
     const audio = new Audio("/assets/pop.mp3");
-    audio.volume = 0.05;
+    audio.volume = 0.1;
     audio.play().catch((err) => {
       console.error(err);
     });
