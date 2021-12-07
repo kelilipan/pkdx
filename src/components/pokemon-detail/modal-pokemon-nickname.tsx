@@ -2,8 +2,10 @@
 
 import { css } from "@emotion/react";
 import Button from "components/button";
-import { createRef } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
+import toast from "react-hot-toast";
+import { useMyPokemon } from "utils/my-pokemon-context";
 
 type ModalNicknameProps = {
   name: string;
@@ -18,12 +20,31 @@ const ModalNickname = ({
   isOpen,
   onClose,
 }: ModalNicknameProps) => {
-  const inputRef = createRef<HTMLInputElement>();
+  const { myPokemon } = useMyPokemon();
+  const [nickname, setNickname] = useState(name);
+  const [error, setError] = useState<string | undefined>();
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    const nickname = inputRef.current?.value;
-    handleSave(nickname || name);
-    onClose();
+    if (!nickname) {
+      setError("Nickname can't be empty");
+    } else {
+      const isExist = myPokemon.find(
+        (pokemon) => pokemon.nickname === nickname
+      );
+      if (!isExist) {
+        handleSave(nickname || name);
+        onClose();
+      } else {
+        setError("Please input another nickname");
+        toast.error("Nickname already exist.");
+      }
+    }
+  };
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setNickname(e.target.value);
+    error && setError(undefined);
   };
 
   const modal = css`
@@ -54,10 +75,16 @@ const ModalNickname = ({
       }
 
       input {
+        font-size: 1em;
         border-radius: 15px;
         width: 100%;
         padding: 0.5em;
-        border: 2px dotted #ccc;
+        border: 2px dotted ${error ? "#cc0033" : "#ccc"};
+        background-color: ${error ? "#fce4e4" : "#fff"};
+      }
+      .error-text {
+        font-size: 0.8rem;
+        color: #cc0033;
       }
 
       .actions {
@@ -80,8 +107,9 @@ const ModalNickname = ({
             name="nickname"
             placeholder={name}
             defaultValue={name}
-            ref={inputRef}
+            onChange={handleChange}
           />
+          {error && <span className="error-text">{error}</span>}
         </form>
         <div className="actions">
           <Button
