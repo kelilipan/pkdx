@@ -7,7 +7,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { convertStatically } from "utils/convert-statically-url";
 import { formatNumber } from "utils/format-number";
-import { PokemonLocal } from "utils/my-pokemon-context";
+import { PokemonLocal, useMyPokemon } from "utils/my-pokemon-context";
 import { useSound } from "utils/sound-context";
 import TypeLabel from "../type-label";
 
@@ -22,6 +22,10 @@ const PokemonCard = ({
 }: PokemonCardProps) => {
   const theme = useTheme();
   const { click } = useSound();
+  const { myPokemon } = useMyPokemon();
+  const count = () => {
+    return myPokemon.filter((pokemon) => pokemon.id === pokemonData.id).length;
+  };
 
   const type1 = pokemonData.types[0] || "unkown";
   const type2 = pokemonData.types[1] || type1 || "unkown";
@@ -121,7 +125,7 @@ const PokemonCard = ({
           {formatNumber(pokemonData.id)}
         </p>
         <p css={name}>{pokemonData.nickname}</p>
-        <p css={{ textTransform: "capitalize", fontsize: "0.6em" }}>
+        <p css={{ textTransform: "capitalize", fontsize: "0.5em" }}>
           ({pokemonData.name})
         </p>
         <div css={typesContainer}>
@@ -129,6 +133,7 @@ const PokemonCard = ({
             return <TypeLabel key={idx}>{type}</TypeLabel>;
           })}
         </div>
+        <p css={{ marginTop: "0.5em", fontsize: "0.5em" }}>Owned {count()}</p>
       </Link>
     </div>
   );
