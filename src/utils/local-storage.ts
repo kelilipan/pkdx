@@ -17,4 +17,23 @@ const clearMyPokemon = () => {
   localStorage.removeItem("_mypokemon");
 };
 
-export { readMyPokemon, saveMyPokemon, clearMyPokemon };
+const readSoundSettings = (): { isMuted: boolean } => {
+  const localData = localStorage.getItem("_sound");
+  if (localData === null) {
+    return { isMuted: false };
+  }
+  const soundSettings = JSON.parse(localData || "");
+  return soundSettings;
+};
+
+const saveSoundSettings = (settings: { isMuted: boolean }) => {
+  localStorage.setItem("_sound", JSON.stringify(settings));
+};
+
+export {
+  readMyPokemon,
+  saveMyPokemon,
+  clearMyPokemon,
+  readSoundSettings,
+  saveSoundSettings,
+};

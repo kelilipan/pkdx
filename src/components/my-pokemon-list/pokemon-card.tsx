@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { convertStatically } from "utils/convert-statically-url";
 import { formatNumber } from "utils/format-number";
 import { PokemonLocal } from "utils/my-pokemon-context";
+import { useSound } from "utils/sound-context";
 import TypeLabel from "../type-label";
 
 export type PokemonCardProps = {
@@ -20,6 +21,8 @@ const PokemonCard = ({
   handleRelease,
 }: PokemonCardProps) => {
   const theme = useTheme();
+  const { click } = useSound();
+
   const type1 = pokemonData.types[0] || "unkown";
   const type2 = pokemonData.types[1] || type1 || "unkown";
 
@@ -97,6 +100,7 @@ const PokemonCard = ({
         }
         height: 100%;
       `}
+      onClick={click}
     >
       <Button
         title="release pokemon"

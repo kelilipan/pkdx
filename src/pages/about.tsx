@@ -1,9 +1,16 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
+import Button from "components/button";
 import Container from "components/layout/container";
+import toast from "react-hot-toast";
+import { FaTrash, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+import { useMyPokemon } from "utils/my-pokemon-context";
+import { useSound } from "utils/sound-context";
 
 const About = () => {
+  const { isMuted, toggleMute } = useSound();
+  const { clearMyPokemon } = useMyPokemon();
   const aboutContainer = css`
     display: flex;
     flex-direction: column;
@@ -30,6 +37,12 @@ const About = () => {
       text-align: center;
     }
   `;
+
+  const handleClearMyPokemon = () => {
+    clearMyPokemon();
+    toast.success("All Pokémon released...");
+  };
+
   return (
     <Container css={aboutContainer}>
       <img className="logo" src="/android-chrome-192x192.png" alt="PkDx" />
@@ -60,6 +73,32 @@ const About = () => {
         Pokémon © 2002-2021 Pokémon. © 1995-2021 Nintendo/Creatures Inc./GAME
         FREAK inc. TM, ® and Pokémon character names are trademarks of Nintendo.
       </p>
+      <div>
+        <Button
+          css={(theme) => ({
+            display: "block",
+            margin: "0 auto",
+            fontSize: "1em",
+            backgroundColor: isMuted
+              ? theme.color.type.fighting
+              : theme.color.type.water,
+          })}
+          onClick={toggleMute}
+          aria-label={isMuted ? "unmute sound" : "mute sound"}
+        >
+          {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+        </Button>
+        <Button
+          css={(theme) => ({
+            marginTop: "0.5em",
+            fontSize: "1em",
+            backgroundColor: theme.color.type.fire,
+          })}
+          onClick={handleClearMyPokemon}
+        >
+          <FaTrash /> Release all Pokémon
+        </Button>
+      </div>
     </Container>
   );
 };

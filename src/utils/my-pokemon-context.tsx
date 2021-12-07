@@ -13,12 +13,14 @@ type MyPokemonContextType = {
   myPokemon: PokemonLocal[];
   savePokemon: (pokemon: Pokemon.Pokemon, nickname: string) => void;
   releasePokemon: (idx: number) => void;
+  clearMyPokemon: () => void;
 };
 
 const MyPokemonContext = createContext<MyPokemonContextType>({
   myPokemon: [],
   releasePokemon: () => {},
   savePokemon: () => {},
+  clearMyPokemon: () => {},
 });
 
 const MyPokemonProvider: React.FC = (props) => {
@@ -46,6 +48,11 @@ const MyPokemonProvider: React.FC = (props) => {
     saveMyPokemon(filtered);
   };
 
+  const clearMyPokemon = () => {
+    setMyPokemon([]);
+    saveMyPokemon([]);
+  };
+
   useEffect(() => {
     const localData = readMyPokemon();
     if (localData) {
@@ -55,7 +62,7 @@ const MyPokemonProvider: React.FC = (props) => {
 
   return (
     <MyPokemonContext.Provider
-      value={{ myPokemon, releasePokemon, savePokemon }}
+      value={{ myPokemon, releasePokemon, savePokemon, clearMyPokemon }}
       {...props}
     />
   );

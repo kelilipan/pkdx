@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useMyPokemon } from "utils/my-pokemon-context";
+import { useSound } from "utils/sound-context";
 import ModalNickname from "./modal-pokemon-nickname";
 
 type CatchPokemonProps = {
@@ -12,6 +13,7 @@ type CatchPokemonProps = {
 
 const CatchPokemon = ({ data }: CatchPokemonProps) => {
   const { savePokemon } = useMyPokemon();
+  const { click } = useSound();
   const [isOpen, setModal] = useState(false);
   const [isCatching, setCatching] = useState(false);
 
@@ -110,6 +112,7 @@ const CatchPokemon = ({ data }: CatchPokemonProps) => {
         css={catchPokemon}
         onClick={() => {
           handleCatch();
+          click();
         }}
       >
         <img

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { convertStatically } from "utils/convert-statically-url";
 import { formatNumber } from "utils/format-number";
+import { useSound } from "utils/sound-context";
 import TypeLabel from "../type-label";
 
 export type PokemonCardProps = {
@@ -17,6 +18,7 @@ export type PokemonCardProps = {
 
 const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
   const theme = useTheme();
+  const { click } = useSound();
   const [getTypes, { data: responseTypes }] = useLazyQuery<{
     pokemon: Pokemon.Pokemon;
   }>(GET_POKEMON_TYPE, {
@@ -84,7 +86,7 @@ const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
   `;
 
   return (
-    <Link to={"/pokemon/" + pokemonData.name} css={card}>
+    <Link to={"/pokemon/" + pokemonData.name} css={card} onClick={click}>
       <img
         crossOrigin="anonymous"
         src={convertStatically(pokemonData.image)}

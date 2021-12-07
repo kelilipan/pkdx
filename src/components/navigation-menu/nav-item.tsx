@@ -2,6 +2,7 @@
 
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
+import { useSound } from "utils/sound-context";
 
 export type NavItemProps = {
   icon: JSX.Element;
@@ -11,6 +12,7 @@ export type NavItemProps = {
 };
 
 const NavItem = ({ icon, text, isActive, path }: NavItemProps) => {
+  const { click } = useSound();
   const container = css`
     background-color: #fff;
     height: 90%;
@@ -42,6 +44,7 @@ const NavItem = ({ icon, text, isActive, path }: NavItemProps) => {
       to={path}
       css={[container, isActive && active]}
       data-isactive={isActive}
+      onClick={click}
     >
       <div css={{ fontSize: "1.5rem", transition: "0.15s all ease" }}>
         {icon}
