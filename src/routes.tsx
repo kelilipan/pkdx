@@ -9,7 +9,11 @@ import About from "pages/about";
 
 const Routes = () => {
   const location = useLocation();
-  useEffect(() => window.scroll(0, 0), [location]);
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      window.scroll(0, 0);
+    }
+  }, [location]);
 
   return (
     <ReactRoutes>
