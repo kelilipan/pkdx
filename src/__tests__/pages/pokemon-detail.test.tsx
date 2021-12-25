@@ -76,7 +76,7 @@ describe("Pokemon Detail page", () => {
     render();
 
     //Wait useEffect to fetch data
-    await screen.queryByTestId("image-loading-skeleton");
+    await screen.findByTestId("image-loading-skeleton");
     const notFound = await screen.findByRole("heading", { name: /not found/i });
     const text = await screen.findByText(/page is not available\./i);
     const backToHome = await screen.findByRole("link", {
