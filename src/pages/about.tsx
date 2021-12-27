@@ -3,6 +3,7 @@
 import { css } from "@emotion/react";
 import Button from "components/button";
 import Container from "components/layout/container";
+import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import { FaTrash, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 import { useMyPokemon } from "utils/my-pokemon-context";
@@ -45,6 +46,9 @@ const About = () => {
 
   return (
     <Container css={aboutContainer}>
+      <Helmet>
+        <title>{`About | PkDX: PokeDex App`}</title>
+      </Helmet>
       <img className="logo" src="/android-chrome-192x192.png" alt="PkDx" />
       <h1>PkDX</h1>
       <p>

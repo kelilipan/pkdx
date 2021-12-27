@@ -2,6 +2,7 @@
 
 import { css } from "@emotion/react";
 import Container from "components/layout/container";
+import { Helmet } from "react-helmet";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -26,6 +27,9 @@ const NotFound = () => {
   `;
   return (
     <Container css={container}>
+      <Helmet>
+        <title>{`NotFound | PkDX: PokeDex App`}</title>
+      </Helmet>
       <h1>Not found</h1>
       <p>
         Page <strong>{location.pathname}</strong> is not available.
