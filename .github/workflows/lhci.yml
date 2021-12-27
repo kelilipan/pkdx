@@ -1,22 +1,19 @@
 name: Lighthouse
 on: push
 jobs:
- wait-for-vercel-deployment:
-    runs-on: ubuntu-18.04
+  lighthouse:
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: UnlyEd/github-action-await-vercel@v1.2.14
         id: await-vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
           deployment-url: pkdx.wisesa.dev
-          timeout: 10 # Wait for 10 seconds before failing
+          timeout: 30 # Wait for 30 seconds before failing
       - name: Deployment status
         run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
-  lighthouse:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
       - name: Run Lighthouse on urls and validate with lighthouserc
         uses: treosh/lighthouse-ci-action@v8
         with:
