@@ -3834,6 +3834,11 @@ convert-source-map@^0.3.3:
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-0.3.5.tgz#f1d802950af7dd2631a1febe0596550c86ab3190"
   integrity sha1-8dgClQr33SYxof6+BZZVDIarMZA=
 
+convert-staticzap@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/convert-staticzap/-/convert-staticzap-1.0.1.tgz#47abc2f7a015913165f64ded64305ebee3b6fe96"
+  integrity sha512-f7lUUiegc49fa0rCzhxtXp+BD6FC0ZUbDid9rRCvaDo1MI4S9zInlZaqflfo9SJ92EG2DjPSBue0UR2ozGGTkw==
+
 cookie-signature@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"

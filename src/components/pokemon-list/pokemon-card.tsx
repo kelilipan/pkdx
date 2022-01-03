@@ -6,7 +6,7 @@ import { lighten } from "polished";
 import { GET_POKEMON_TYPE } from "queries/pokemon";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { convertStatically } from "utils/convert-statically-url";
+import convert from "convert-staticzap";
 import { formatNumber } from "utils/format-number";
 import { useSound } from "utils/sound-context";
 import TypeLabel from "../type-label";
@@ -89,7 +89,7 @@ const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
     <Link to={"/pokemon/" + pokemonData.name} css={card} onClick={click}>
       <img
         crossOrigin="anonymous"
-        src={convertStatically(pokemonData.image)}
+        src={convert(pokemonData.image) || pokemonData.image}
         alt={pokemonData.name}
         css={image}
       />
