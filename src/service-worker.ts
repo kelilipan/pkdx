@@ -64,10 +64,10 @@ self.addEventListener("message", (event) => {
 // Any other custom service worker logic can go here.
 registerRoute(
   ({ url }) =>
-    url.origin === "https://cdn.statically.io" &&
-    url.pathname.startsWith("/gh/PokeAPI/sprites"),
+    url.origin === "https://raw.githubusercontent.com" &&
+    url.pathname.startsWith("/PokeAPI/sprites"),
   new CacheFirst({
-    cacheName: "external-static-assets",
+    cacheName: "sprites",
     plugins: [
       new ExpirationPlugin({
         maxEntries: 1000,

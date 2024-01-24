@@ -3,10 +3,9 @@
 import { useLazyQuery } from "@apollo/client";
 import { css, useTheme } from "@emotion/react";
 import { lighten } from "polished";
-import { GET_POKEMON_TYPE } from "queries/pokemon";
+import { GET_POKEMON_BY_NAME } from "queries/pokemon";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import convert from "convert-staticzap";
 import { formatNumber } from "utils/format-number";
 import { useSound } from "utils/sound-context";
 import TypeLabel from "../type-label";
@@ -21,9 +20,9 @@ const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
   const { click } = useSound();
   const [getTypes, { data: responseTypes }] = useLazyQuery<{
     pokemon: Pokemon.Pokemon;
-  }>(GET_POKEMON_TYPE, {
+  }>(GET_POKEMON_BY_NAME, {
     variables: { name: pokemonData.name },
-    fetchPolicy: "no-cache",
+    fetchPolicy: "cache-first",
   });
 
   const typelist = types || responseTypes?.pokemon.types;
@@ -89,7 +88,7 @@ const PokemonCard = ({ data: pokemonData, types }: PokemonCardProps) => {
     <Link to={"/pokemon/" + pokemonData.name} css={card} onClick={click}>
       <img
         crossOrigin="anonymous"
-        src={convert(pokemonData.image) || pokemonData.image}
+        src={pokemonData.image}
         alt={pokemonData.name}
         css={image}
       />

@@ -12,6 +12,7 @@ const Home = () => {
     GET_POKEMON_LIST,
     {
       variables: { offset: 0, limit },
+      fetchPolicy: "cache-first",
     }
   );
   const loadMore = () => {

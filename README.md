@@ -62,7 +62,6 @@ This project has a github actions scripts to run `yarn test` & lighthouse assert
 - [Apollo](https://www.apollographql.com/docs/react/get-started/) graphql client.
 - [mazipan/graphql-pokeapi](https://github.com/mazipan/graphql-pokeapi) for graphql api.
 - [Workbox ⚙️](https://developers.google.com/web/tools/workbox/modules/workbox-strategies) for creating service worker.
-- [Statically.io ⚡⚡⚡](https://statically.io/) assets CDN.
 - [Jest](https://jestjs.io/) & [react testing-library](https://testing-library.com/) for testing.
 - Written in [typescript](https://typescriptlang.org).
 - [Hosted on Vercel 🚀](https://vercel.com/).

@@ -5,7 +5,6 @@ import Button from "components/button";
 import { lighten } from "polished";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import convert from "convert-staticzap";
 import { formatNumber } from "utils/format-number";
 import { PokemonLocal, useMyPokemon } from "utils/my-pokemon-context";
 import { useSound } from "utils/sound-context";
@@ -117,7 +116,7 @@ const PokemonCard = ({
       <Link to={"/pokemon/" + pokemonData.name} css={card}>
         <img
           crossOrigin="anonymous"
-          src={convert(pokemonData.sprites) || pokemonData.sprites}
+          src={pokemonData.sprites}
           alt={pokemonData.name}
           css={image}
         />

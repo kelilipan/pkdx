@@ -12,7 +12,11 @@ const PokemonDetailPage = () => {
   const { name } = useParams<"name">();
   const { loading, data, error } = useQuery<{
     pokemon: Pokemon.Pokemon;
-  }>(GET_POKEMON_BY_NAME, { variables: { name }, errorPolicy: "all" });
+  }>(GET_POKEMON_BY_NAME, {
+    variables: { name },
+    fetchPolicy: "cache-first",
+    errorPolicy: "all",
+  });
   const capitalizeFirstLetter = (text: string) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
   };

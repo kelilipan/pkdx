@@ -4,7 +4,6 @@ import { css, useTheme } from "@emotion/react";
 import { darken } from "polished";
 import { useEffect, useState } from "react";
 import ContentLoader from "react-content-loader";
-import convert from "convert-staticzap";
 import DetailInfo from "./detail-info";
 import HeaderInfo from "./header-info";
 
@@ -80,7 +79,7 @@ const PokemonDetail = ({ data, isLoading }: PokemonDetailProps) => {
         <img
           crossOrigin="anonymous"
           css={sprites}
-          src={convert(sprite) || sprite}
+          src={sprite}
           onError={() => setSprite(data?.sprites?.front_default)}
           alt={data?.name}
         />

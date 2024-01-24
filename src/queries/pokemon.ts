@@ -50,17 +50,4 @@ const GET_POKEMON_BY_NAME = gql`
   }
 `;
 
-const GET_POKEMON_TYPE = gql`
-  query getType($name: String!) {
-    pokemon(name: $name) {
-      types {
-        type {
-          id
-          name
-        }
-      }
-    }
-  }
-`;
-
-export { GET_POKEMON_LIST, GET_POKEMON_BY_NAME, GET_POKEMON_TYPE };
+export { GET_POKEMON_LIST, GET_POKEMON_BY_NAME };
